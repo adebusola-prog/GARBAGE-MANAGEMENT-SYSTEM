@@ -33,7 +33,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool)
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['https://garbage-management-system-production.up.railway.app', '*']
+ALLOWED_HOSTS = ['https://garbage-management-system-production.up.railway.app/garbage', '*']
 
 
 # Application definition
@@ -75,7 +75,7 @@ ELASTICSEARCH_INDEX_NAMES = {
     'garbage_app.Location': 'location_index',
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://garbage-management-system-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://garbage-management-system-production.up.railway.app/garbage']
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
