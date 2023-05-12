@@ -30,7 +30,7 @@ class CollectionPlan(models.Model):
                            default=Status.MONTHLY)
    price = models.DecimalField(max_digits=10, decimal_places=2)
    description = models.TextField(blank=True)
-   weight=models.CharField(blank=True, null=True)
+   weight=models.PositiveIntegerField(blank=True, null=True)
    created_at = models.DateTimeField(auto_now_add=True)
    updated_at=models.DateTimeField(auto_now=True)
    is_active= models.BooleanField(default=True)

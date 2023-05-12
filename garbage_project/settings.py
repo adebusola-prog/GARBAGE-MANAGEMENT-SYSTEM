@@ -17,6 +17,8 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE_URL= config('DATABASE_URL')
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +32,8 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://garbage-management-system-production.up.railway.app', '*']
 
 
 # Application definition
@@ -72,7 +75,7 @@ ELASTICSEARCH_INDEX_NAMES = {
     'garbage_app.Location': 'location_index',
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-3640.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://garbage-management-system-production.up.railway.app/']
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
@@ -114,15 +117,7 @@ WSGI_APPLICATION = "garbage_project.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':  config("DB_NAME"),
-        'USER': config("DB_USER"),
-        'PASSWORD': config("DB_PASSWORD"),
-        'PORT': config("DB_PORT"),
-        'HOST': config("DB_HOST"),
-
-    }
+    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
 }
 
 
@@ -209,6 +204,5 @@ EMAIL_PORT = config("EMAIL_PORT", cast=int)
 
 LOGIN_URL = 'accounts:sign_in'
 
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# database_url = dj_database_url.config(conn_max_age=500)
+# DATABASES['DATABASES].update(config('database_url'))
