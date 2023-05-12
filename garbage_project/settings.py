@@ -72,6 +72,7 @@ ELASTICSEARCH_INDEX_NAMES = {
     'garbage_app.Location': 'location_index',
 }
 
+CSRF_TRUSTED_ORIGINS = ['https://web-production-3640.up.railway.app']
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
