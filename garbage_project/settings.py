@@ -13,6 +13,7 @@ import os
 from decouple import config
 from datetime import timedelta
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,6 +77,7 @@ CRISPY_TEMPLATE_PACK = 'uni_form'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -207,3 +209,5 @@ EMAIL_PORT = config("EMAIL_PORT", cast=int)
 LOGIN_URL = 'accounts:sign_in'
 
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
